@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -71,53 +72,82 @@ public class LoginController {
             WarningRole.setVisible(false);
             if(Role.equals("Student"))
             {
-
+                if(ValidateData(Username, Password,Role))
+                {
+                    showAlert("Login Sucessfull","Welcome");
+                }
+                else {
+                    showAlert("Login Failed", "Invalid username or password");
+                }
             }
             else if(Role.equals("Teacher"))
             {
-
+                if(ValidateData(Username, Password,Role))
+                {
+                    showAlert("Login Sucessfull","Welcome");
+                }
+                else {
+                    showAlert("Login Failed", "Invalid username or password");
+                }
             }
             else
             {
-
+                if(ValidateData(Username, Password,Role))
+                {
+                    showAlert("Login Sucessfull","Welcome");
+                }
+                else {
+                    showAlert("Login Failed", "Invalid username or password");
+                }
             }
         }
     }
-    void ValidateData(String Username, String Password,String Role )
-    {
-        if(Role.equals("Student"))
-        {
-            try(
+    boolean ValidateData(String Username, String Password,String Role ) {
+        if (Role.equals("Student")) {
+            try (
                     Connection connection = con.getConnection();
                     PreparedStatement preparedStatement =
-                            connection.prepareStatement("SELECT * FROM StudentData WHERE username = ? AND password = ?")
-            )
-            {} catch (SQLException e) {
+                            connection.prepareStatement("SELECT * FROM studentdata WHERE username = ? AND password = ?")
+            ) {
+                preparedStatement.setString(1, Username);
+                preparedStatement.setString(2, Password);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                return resultSet.next();
+            } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-        }
-        else if(Role.equals("Teacher"))
-        {
-            try(
+        } else if (Role.equals("Teacher")) {
+            try (
                     Connection connection = con.getConnection();
-                    PreparedStatement preparedStatement =
-                            connection.prepareStatement("SELECT * FROM TeacherData WHERE username = ? AND password = ?")
-            )
-            {} catch (SQLException e) {
+                    PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM teacherdata WHERE username = ? AND password = ?")
+            ) {
+                preparedStatement.setString(1, Username);
+                preparedStatement.setString(2, Password);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                return resultSet.next();
+            } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-        }
-        else
-        {
-            try(
+        } else {
+            try (
                     Connection connection = con.getConnection();
-                    PreparedStatement preparedStatement =
-                            connection.prepareStatement("INSERT * FROM AdminData WHERE username = ? AND password = ?")
-            )
-            {} catch (SQLException e) {
-                throw new RuntimeException(e);
+                    PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM admindata WHERE username = ? AND password = ?")
+            ) {
+                preparedStatement.setString(1, Username);
+                preparedStatement.setString(2, Password);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                return resultSet.next();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
-
+        return false;
+    }
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
