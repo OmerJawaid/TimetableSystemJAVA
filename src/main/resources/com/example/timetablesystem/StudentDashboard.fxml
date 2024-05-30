@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.timetablesystem.StudentController">
+    <children>
+        <AnchorPane layoutY="47.0" prefHeight="478.0" prefWidth="115.0" style="-fx-background-color: grey;">
+            <children>
+                <Button layoutX="9.0" layoutY="143.0" mnemonicParsing="false" onAction="#AttendanceButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" text="Attendance" />
+                <Button layoutX="9.0" layoutY="197.0" mnemonicParsing="false" onAction="#QuizButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" text="Quiz" />
+                <Button layoutX="9.0" layoutY="251.0" mnemonicParsing="false" onAction="#AssignmentButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" text="Assignment" />
+            <Button layoutX="9.0" layoutY="21.0" mnemonicParsing="false" onAction="#AttendanceButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" text="Profile" />
+            <Button layoutX="9.0" layoutY="406.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="101.0" styleClass="LogoutButton" text="Logout" />
+                <!-- Add more buttons as needed -->
+            </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="47.0" prefWidth="798.0" style="-fx-background-color: #3b3b3b;">
+            <children>
+                <Label layoutX="30.0" layoutY="11.0" style="-fx-text-fill: White;" text="Bahria University" textFill="#fffafa">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="664.0" layoutY="5.0" prefHeight="18.0" prefWidth="73.0" style="-fx-text-fill: White;" text="Welcome" />
+                <Label id="UsernameLabel" alignment="CENTER" layoutX="670.0" layoutY="24.0" style="-fx-text-fill: White;" text="Username" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

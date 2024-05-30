@@ -14,7 +14,7 @@ public class Section {
     public String GetName(){return Name;}
     public int GetNoOgStudents(){return NoOfStudents;}
 
-    //Add Students to Section Vector by Refrence
+    //Add Students to Section Vector by Reference
     public void AddStudent(Student studenttovec){
         StudentsObj.add(studenttovec);
     }

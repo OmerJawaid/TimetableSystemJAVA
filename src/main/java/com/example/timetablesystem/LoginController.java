@@ -2,12 +2,19 @@ package com.example.timetablesystem;
 
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,7 +54,7 @@ public class LoginController {
     DatabaseConnection con =new DatabaseConnection();
 
     @FXML
-    void SigninButtonOnClick(ActionEvent event) {
+    void SigninButtonOnClick(ActionEvent event) throws IOException {
 
         String Username = UsernameTextbox.getText();
         String Password = PasswordTextbox.getText();
@@ -72,9 +79,19 @@ public class LoginController {
             WarningRole.setVisible(false);
             if(Role.equals("Student"))
             {
-                if(ValidateData(Username, Password,Role))
-                {
-                    showAlert("Login Sucessfull","Welcome");
+                if(ValidateData(Username, Password,Role)) {
+                    try {
+                        Parent StudentdashboardParent = FXMLLoader.load(getClass().getResource("/com/example/timetablesystem/StudentDashboard.fxml"));
+
+
+                        Scene StudentdashboardScene = new Scene(StudentdashboardParent);
+                        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        window.setScene(StudentdashboardScene);
+                        window.show();
+                    }
+                    catch(IOException e){
+                        e.printStackTrace();
+                    }
                 }
                 else {
                     showAlert("Login Failed", "Invalid username or password");
@@ -94,7 +111,7 @@ public class LoginController {
             {
                 if(ValidateData(Username, Password,Role))
                 {
-                    showAlert("Login Sucessfull","Welcome");
+                    loadDashboard(event, "/com/example/timetablesystem/AdminDashboard.fxml", UsernameTextbox.getText());
                 }
                 else {
                     showAlert("Login Failed", "Invalid username or password");
@@ -150,4 +167,22 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    private void loadDashboard(ActionEvent event, String fxmlPath, String username) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent dashboardParent = loader.load();
+            if (fxmlPath.contains("/com/example/timetablesystem/AdminDashboard.fxml")) {
+                AdminDashboardController adminController = loader.getController();
+                adminController.SetUsername(username);
+            }
+
+            Scene dashboardScene = new Scene(dashboardParent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(dashboardScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
