@@ -3,7 +3,7 @@ import java.util.Vector;
 
 public class Course {
 
-    Course(){};
+    Course(String courseName,int CourseID){};
 
     //Attributes Declaration
     private int Code;

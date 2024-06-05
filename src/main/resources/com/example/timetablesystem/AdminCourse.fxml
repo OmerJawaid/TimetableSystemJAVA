@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.timetablesystem.AdminCourseController">
+   <children>
+      <AnchorPane layoutY="47.0" prefHeight="478.0" prefWidth="115.0" style="-fx-background-color: grey;">
+         <children>
+            <Button layoutX="7.0" layoutY="419.0" mnemonicParsing="false" onAction="#DashboardButtonOnclick" prefHeight="34.0" prefWidth="101.0" style="-fx-text-fill: White; -fx-background-color: #1F8FE8;" styleClass="DashboardButton" text="Dashboard" />
+            <Button layoutX="7.0" layoutY="85.0" mnemonicParsing="false" onAction="#CreateCourseButtonPaneOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" styleClass="NewSectionButton" text="Create Course" />
+            <Button layoutX="7.0" layoutY="143.0" mnemonicParsing="false" onAction="#AddSectionButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" styleClass="AddStudentButton" text="Add Section" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="47.0" prefWidth="798.0" style="-fx-background-color: #3b3b3b;">
+         <children>
+            <Label layoutX="30.0" layoutY="11.0" style="-fx-text-fill: White;" text="Bahria University" textFill="#fffafa">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="664.0" layoutY="16.0" prefHeight="18.0" prefWidth="73.0" style="-fx-text-fill: White;" text="Course">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="NewSectionPane" fx:id="NewCoursePane" layoutX="166.0" layoutY="84.0" prefHeight="416.0" prefWidth="605.0">
+         <children>
+            <Label id="CreateCourseLabel" fx:id="CreateCourseLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="216.0" layoutY="49.0" prefHeight="47.0" prefWidth="175.0" text="Create Course">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="216.0" layoutY="177.0" text="Course Code">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="216.0" layoutY="263.0" text="Course Name">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="CourseCodeTextbox" layoutX="207.0" layoutY="196.0" prefHeight="25.0" prefWidth="194.0" />
+            <TextField fx:id="CourseNameTextbox" layoutX="206.0" layoutY="282.0" prefHeight="25.0" prefWidth="194.0" />
+            <Button layoutX="504.0" layoutY="382.0" mnemonicParsing="false" onAction="#CreateCourseButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" styleClass="NewSectionButton" text="Create" />
+            <Label fx:id="CourseCodeWarning" layoutX="216.0" layoutY="221.0" text="Label" visible="false" />
+            <Label fx:id="CourseNameWarning" layoutX="216.0" layoutY="307.0" text="Label" visible="false" />
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AddSectionPane" fx:id="AddSectionPane" layoutX="166.0" layoutY="84.0" prefHeight="416.0" prefWidth="605.0" visible="false">
+         <children>
+            <Label id="AddSectionLabel" fx:id="AddSectionLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="217.0" layoutY="35.0" prefHeight="47.0" prefWidth="175.0" text="Add">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="229.0" layoutY="215.0" text="Section Name">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="230.0" layoutY="286.0" text="Course Name">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField id="SectionNameTextbox" fx:id="SectionNameTextbox" layoutX="219.0" layoutY="233.0" prefHeight="25.0" prefWidth="194.0" />
+            <ComboBox id="CourseNameCombobox" fx:id="CourseNameCombobox" layoutX="219.0" layoutY="305.0" prefHeight="25.0" prefWidth="194.0" />
+            <Button fx:id="AddButton" layoutX="504.0" layoutY="382.0" mnemonicParsing="false" onAction="#AddButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" styleClass="AddButton" text="Add" />
+            <Label fx:id="StudentIdWarning" layoutX="217.0" layoutY="221.0" text="Label" visible="false" />
+            <Label fx:id="StudentSectionNameWarning" layoutX="219.0" layoutY="307.0" text="Label" visible="false" />
+            <TextField id="TeacherNameTextbox" fx:id="TeacherIdTextbox" layoutX="219.0" layoutY="156.0" prefHeight="25.0" prefWidth="194.0" />
+            <Label layoutX="233.0" layoutY="136.0" text="Teacher ID">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="TeacherIdWarning" layoutX="231.0" layoutY="181.0" text="Label" visible="false" />
+            <Label fx:id="SectionNameWarning" layoutX="231.0" layoutY="258.0" text="Label" visible="false" />
+            <Label fx:id="CourseNameCreateWarning" layoutX="231.0" layoutY="329.0" text="Label" visible="false" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

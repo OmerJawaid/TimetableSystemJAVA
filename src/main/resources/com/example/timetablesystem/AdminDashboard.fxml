@@ -34,11 +34,11 @@
                 <AnchorPane fx:id="SectionPanel" layoutY="20.0" onMouseClicked="#SectionPaneOnClick" prefHeight="77.0" prefWidth="586.0" style="-fx-background-color: #D3D3D3;">
                     <children>
                         <Separator prefHeight="3.0" prefWidth="586.0" />
-                  <Button fx:id="NewSectionButton" layoutX="111.0" layoutY="29.0" mnemonicParsing="false" onAction="#NewSectionButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="New Section" />
-                  <Button fx:id="AddStudentButton" layoutX="302.0" layoutY="29.0" mnemonicParsing="false" onAction="#AddStudentButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="Add Student" />
+                  <Button fx:id="NewSectionButton" layoutX="147.0" layoutY="29.0" mnemonicParsing="false" onAction="#NewSectionButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="New Section" />
+                  <Button fx:id="AddStudentButton" layoutX="338.0" layoutY="29.0" mnemonicParsing="false" onAction="#AddStudentButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="Add Student" />
                     </children>
                 </AnchorPane>
-                <AnchorPane prefHeight="30.0" prefWidth="586.0" style="-fx-background-color: grey;">
+                <AnchorPane onMouseClicked="#SectionPaneOnClick" prefHeight="30.0" prefWidth="586.0" style="-fx-background-color: grey;">
                     <children>
                         <Label layoutX="21.0" layoutY="4.0" style="-fx-text-fill: White;" text="Section" textFill="#f5f5f5">
                             <font>
@@ -51,12 +51,15 @@
         </AnchorPane>
         <AnchorPane layoutX="136.0" layoutY="207.0" prefHeight="76.0" prefWidth="586.0" style="-fx-background-color: pink;">
             <children>
-                <AnchorPane fx:id="CoursePanel" layoutY="20.0" prefHeight="77.0" prefWidth="586.0" style="-fx-background-color: #D3D3D3;">
+                <AnchorPane fx:id="CoursePanel" layoutY="20.0" onMouseClicked="#CoursePaneOnClick" prefHeight="77.0" prefWidth="586.0" style="-fx-background-color: #D3D3D3;">
                     <children>
                         <Separator layoutY="-1.0" prefHeight="3.0" prefWidth="586.0" />
+                  <Button fx:id="NewCourseButton" layoutX="109.0" layoutY="29.0" mnemonicParsing="false" onAction="#NewCourseButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="New Course" />
+                  <Button fx:id="AddSectionButton" layoutX="241.0" layoutY="29.0" mnemonicParsing="false" onAction="#AddSectionButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="Add Section" />
+                  <Button fx:id="AddTeacherButton" layoutX="377.0" layoutY="29.0" mnemonicParsing="false" onAction="#AddTeacherButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="Add Teacher" />
                     </children>
                 </AnchorPane>
-                <AnchorPane prefHeight="30.0" prefWidth="586.0" style="-fx-background-color: grey;">
+                <AnchorPane onMouseClicked="#CoursePaneOnClick" prefHeight="30.0" prefWidth="586.0" style="-fx-background-color: grey;">
                     <children>
                         <Label layoutX="24.0" layoutY="4.0" style="-fx-text-fill: White;" text="Course" textFill="#f5f5f5">
                             <font>

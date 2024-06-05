@@ -24,7 +24,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="47.0" prefHeight="478.0" prefWidth="115.0" style="-fx-background-color: grey;" stylesheets="hello.css">
+      <AnchorPane layoutY="47.0" prefHeight="478.0" prefWidth="115.0" style="-fx-background-color: grey;" >
          <children>
             <Button fx:id="StudentButton" layoutX="9.0" layoutY="104.0" mnemonicParsing="false" onAction="#handleStudentButtonClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="Student" />
             <Button fx:id="TeacherButton" layoutX="9.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleTeacherButtonClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="Teacher" />
