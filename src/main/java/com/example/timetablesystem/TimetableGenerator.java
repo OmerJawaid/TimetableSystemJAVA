@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -15,6 +17,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
+
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class TimetableGenerator {
     private final Vector<Student> Students = new Vector<>(100);
@@ -30,8 +35,18 @@ public class TimetableGenerator {
     //FXML
     @FXML
     AnchorPane SectionTimetablePane;
+    @FXML
     AnchorPane TeacherTimetablePane;
+    @FXML
     AnchorPane GeneratorPane;
+    @FXML
+    AnchorPane TeacherNamePane;
+    @FXML
+    AnchorPane TeacherTimetableShowPane;
+    @FXML
+    HBox timetableHBox;
+    @FXML
+    TextField TeacherNameTextField;
 
 
     public void DashboardButtonOnclick(ActionEvent actionEvent) {
@@ -58,6 +73,8 @@ public class TimetableGenerator {
         SectionTimetablePane.setVisible(false);
         GeneratorPane.setVisible(false);
         TeacherTimetablePane.setVisible(true);
+        TeacherNamePane.setVisible(true);
+        TeacherTimetableShowPane.setVisible(false);
     }
 
     public void GeneratorButtonPaneOnClick(ActionEvent actionEvent) {
@@ -72,7 +89,7 @@ public class TimetableGenerator {
     }
 
     public void SaveButtonOnClick(ActionEvent actionEvent) {
-        String sql = "INSERT INTO Timetable (section_name, teacher_name, course_name, room_id, time) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Timetable (SectionName, TeacherName, CourseName, RoomId, TimeSlot) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = con.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             for (TimetableEntries entry : timetableEntries) {
@@ -89,7 +106,61 @@ public class TimetableGenerator {
         }
     }
 
+    public void TeacherTimetableShowButtonPaneOnClick(ActionEvent actionEvent) {
+        TeacherNamePane.setVisible(false);
+        TeacherTimetableShowPane.setVisible(true);
+        String TeacherName=TeacherNameTextField.getText();
 
+        timetableHBox.getChildren().clear();
+        List<TimetableEntries> timetableEntries = new ArrayList<>();
+        String sql = "SELECT SectionName, TeacherName, CourseName, RoomId, TimeSlot FROM Timetable WHERE TeacherName = ?";
+
+        try (Connection connection = con.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, TeacherName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String sectionName = resultSet.getString("SectionName");
+                String courseName = resultSet.getString("CourseName");
+                String roomId = resultSet.getString("RoomId");
+                String timeSlot = resultSet.getString("TimeSlot");
+                TimetableEntries entry = new TimetableEntries(sectionName, TeacherName, courseName, roomId, timeSlot);
+                timetableEntries.add(entry);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (!timetableEntries.isEmpty()) {
+            // Create columns for Section, Course, Room, and Time
+            VBox sectionColumn = new VBox(5);
+            VBox courseColumn = new VBox(5);
+            VBox roomColumn = new VBox(5);
+            VBox timeColumn = new VBox(5);
+
+            // Add headers
+            sectionColumn.getChildren().add(new Label("Section"));
+            courseColumn.getChildren().add(new Label("Course"));
+            roomColumn.getChildren().add(new Label("Room"));
+            timeColumn.getChildren().add(new Label("Time"));
+
+            // Add timetable entries
+            for (TimetableEntries entry : timetableEntries) {
+                sectionColumn.getChildren().add(new Label(entry.getSectionName()));
+                courseColumn.getChildren().add(new Label(entry.getCourseName()));
+                roomColumn.getChildren().add(new Label(entry.getRoomId()));
+                timeColumn.getChildren().add(new Label(entry.getTime()));
+            }
+
+            // Add columns to the HBox
+            timetableHBox.getChildren().addAll(sectionColumn, courseColumn, roomColumn, timeColumn);
+        } else {
+            System.out.println("No timetable found for " + TeacherName);
+        }
+    }
 
 
 
@@ -131,8 +202,8 @@ public class TimetableGenerator {
             while (resultSet.next()) {
                 int courseCode = resultSet.getInt("CourseCode");
                 String courseName= resultSet.getString("CourseName");
-                Course course= new Course(courseName,courseCode);
-                Courses.add(course);
+                Course course1= new Course(courseName,courseCode);
+                Courses.add(course1);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -257,5 +328,6 @@ public class TimetableGenerator {
             System.out.println("No timetable found for " + sectionName);
         }
     }
+
 
 }

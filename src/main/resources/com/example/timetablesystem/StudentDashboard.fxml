@@ -2,18 +2,18 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.timetablesystem.StudentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.timetablesystem.StudentDashboardController">
     <children>
         <AnchorPane layoutY="47.0" prefHeight="478.0" prefWidth="115.0" style="-fx-background-color: grey;">
             <children>
                 <Button layoutX="9.0" layoutY="143.0" mnemonicParsing="false" onAction="#AttendanceButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" text="Attendance" />
-                <Button layoutX="9.0" layoutY="197.0" mnemonicParsing="false" onAction="#QuizButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" text="Quiz" />
-                <Button layoutX="9.0" layoutY="251.0" mnemonicParsing="false" onAction="#AssignmentButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" text="Assignment" />
+                <Button layoutX="9.0" layoutY="197.0" mnemonicParsing="false" onAction="#TimetableButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" text="Timetable" />
             <Button layoutX="9.0" layoutY="21.0" mnemonicParsing="false" onAction="#AttendanceButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: white;" text="Profile" />
-            <Button layoutX="9.0" layoutY="406.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="101.0" styleClass="LogoutButton" text="Logout" />
+            <Button layoutX="9.0" layoutY="406.0" mnemonicParsing="false" onAction="#LogoutButtonOnClick" prefHeight="34.0" prefWidth="101.0" styleClass="LogoutButton" text="Logout" />
                 <!-- Add more buttons as needed -->
             </children>
         </AnchorPane>
@@ -24,9 +24,24 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="664.0" layoutY="5.0" prefHeight="18.0" prefWidth="73.0" style="-fx-text-fill: White;" text="Welcome" />
-                <Label id="UsernameLabel" alignment="CENTER" layoutX="670.0" layoutY="24.0" style="-fx-text-fill: White;" text="Username" />
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="665.0" layoutY="15.0" prefHeight="18.0" prefWidth="73.0" style="-fx-text-fill: White;" text="Welcome" />
             </children>
         </AnchorPane>
+      <AnchorPane fx:id="TimetablePanel" layoutX="163.0" layoutY="111.0" onMouseClicked="#TimetablePaneOnClick" prefHeight="77.0" prefWidth="586.0" style="-fx-background-color: #D3D3D3;">
+         <children>
+            <Separator prefHeight="3.0" prefWidth="586.0" />
+            <Button fx:id="YourTimetableButton" layoutX="147.0" layoutY="29.0" mnemonicParsing="false" onAction="#YourTimetableButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="Your Timetable" />
+            <Button fx:id="TeacherTimetableButton" layoutX="338.0" layoutY="29.0" mnemonicParsing="false" onAction="#TeacherTimetableButtonOnClick" prefHeight="34.0" prefWidth="115.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="Teacher Timetable" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="163.0" layoutY="91.0" onMouseClicked="#TimetablePaneOnClick" prefHeight="30.0" prefWidth="586.0" style="-fx-background-color: grey;">
+         <children>
+            <Label layoutX="21.0" layoutY="4.0" style="-fx-text-fill: White;" text="Timetable" textFill="#f5f5f5">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

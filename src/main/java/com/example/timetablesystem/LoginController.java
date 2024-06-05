@@ -81,15 +81,15 @@ public class LoginController {
             {
                 if(ValidateData(Username, Password,Role)) {
                     try {
-                        Parent StudentdashboardParent = FXMLLoader.load(getClass().getResource("/com/example/timetablesystem/StudentDashboard.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/timetablesystem/StudentDashboard.fxml"));
+                        Parent dashboardParent = loader.load();
+                        StudentDashboardController studentController = loader.getController();
 
-
-                        Scene StudentdashboardScene = new Scene(StudentdashboardParent);
+                        Scene dashboardScene = new Scene(dashboardParent);
                         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        window.setScene(StudentdashboardScene);
+                        window.setScene(dashboardScene);
                         window.show();
-                    }
-                    catch(IOException e){
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
@@ -101,7 +101,18 @@ public class LoginController {
             {
                 if(ValidateData(Username, Password,Role))
                 {
-                    showAlert("Login Sucessfull","Welcome");
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/timetablesystem/TeacherDashboard.fxml"));
+                        Parent dashboardParent = loader.load();
+                        TeacherDashboardController teacherController = loader.getController();
+
+                        Scene dashboardScene = new Scene(dashboardParent);
+                        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        window.setScene(dashboardScene);
+                        window.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 else {
                     showAlert("Login Failed", "Invalid username or password");
