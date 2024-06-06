@@ -22,23 +22,29 @@ import java.util.List;
 public class TeachertimetableController {
 
     @FXML
-    HBox GeneratorPane;
+    private HBox GeneratorPane;
 
-    String Username;
-    void setUsername(String username){Username=username;}
-    DatabaseConnection con=new DatabaseConnection();
+    private String Username;
+
+    public void setUsername(String username) {
+        Username = username;
+    }
+
+    private DatabaseConnection con = new DatabaseConnection();
+
     public void LogoutButtonOnClick(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader =new FXMLLoader(getClass().getResource("/com/example/timetablesystem/TeacherDashboard.fxml"));
-        Parent LoginParent =loader.load();
-        TeacherDashboardController LoginController =loader.getController();
-        LoginController.Username=Username;
-        Scene LoginScene =new Scene(LoginParent);
-        Stage window= (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-        window.setScene(LoginScene);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/timetablesystem/TeacherDashboard.fxml"));
+        Parent loginParent = loader.load();
+        TeacherDashboardController loginController = loader.getController();
+        loginController.setUsername(Username); // Correctly setting the username
+        Scene loginScene = new Scene(loginParent);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(loginScene);
         window.show();
     }
-    void TImetbaleGeneration()
-    {  List<TimetableEntries> timetableEntries = new ArrayList<>();
+
+    public void TImetbaleGeneration() {
+        List<TimetableEntries> timetableEntries = new ArrayList<>();
         String sql = "SELECT SectionName, TeacherName, CourseName, RoomId, TimeSlot FROM Timetable WHERE TeacherName = ?";
 
         try (Connection connection = con.getConnection();
@@ -68,10 +74,10 @@ public class TeachertimetableController {
             VBox timeColumn = new VBox(7);
 
             // Add headers
-            sectionColumn.getChildren().add(new Label("Section  "));
-            courseColumn.getChildren().add(new Label("Course  "));
-            roomColumn.getChildren().add(new Label("Room  "));
-            timeColumn.getChildren().add(new Label("Time  "));
+            sectionColumn.getChildren().add(new Label("Section"));
+            courseColumn.getChildren().add(new Label("Course"));
+            roomColumn.getChildren().add(new Label("Room"));
+            timeColumn.getChildren().add(new Label("Time"));
 
             // Add timetable entries
             for (TimetableEntries entry : timetableEntries) {
