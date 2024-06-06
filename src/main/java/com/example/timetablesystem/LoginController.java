@@ -105,6 +105,7 @@ public class LoginController {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/timetablesystem/TeacherDashboard.fxml"));
                         Parent dashboardParent = loader.load();
                         TeacherDashboardController teacherController = loader.getController();
+                        teacherController.setUsername(Username);
 
                         Scene dashboardScene = new Scene(dashboardParent);
                         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -130,7 +131,7 @@ public class LoginController {
             }
         }
     }
-    boolean ValidateData(String Username, String Password,String Role ) {
+    boolean ValidateData(String Username, String Password,String Role) {
         if (Role.equals("Student")) {
             try (
                     Connection connection = con.getConnection();

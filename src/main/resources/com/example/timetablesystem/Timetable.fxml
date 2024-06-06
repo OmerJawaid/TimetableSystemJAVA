@@ -74,6 +74,18 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            <AnchorPane fx:id="SectionNamePane" layoutX="36.0" layoutY="114.0" prefHeight="339.0" prefWidth="619.0">
+               <children>
+                  <Label layoutX="210.0" layoutY="100.0" text="Section Name" />
+                  <Button layoutX="489.0" layoutY="291.0" mnemonicParsing="false" onAction="#SectionTimetableShowButtonPaneOnClick" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" styleClass="NewSectionButton" text="Show Timetable" />
+                  <TextField fx:id="SectionNameTextField" layoutX="203.0" layoutY="117.0" prefHeight="25.0" prefWidth="181.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="SectionTimetableShowPane" layoutX="127.0" layoutY="57.0" prefHeight="453.0" prefWidth="655.0" visible="false">
+               <children>
+                  <HBox fx:id="SectiontimetableHBox" spacing="10.0" /> <!-- Added spacing -->
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

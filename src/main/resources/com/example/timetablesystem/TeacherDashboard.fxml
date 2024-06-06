@@ -20,20 +20,20 @@
         </AnchorPane>
       <AnchorPane layoutY="47.0" prefHeight="478.0" prefWidth="115.0" style="-fx-background-color: grey;">
          <children>
-            <Button id="ProfileButton" layoutX="7.0" layoutY="21.0" mnemonicParsing="false" onAction="#ProfileButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: WHite;" text="Profile" />
             <Button layoutX="7.0" layoutY="419.0" mnemonicParsing="false" onAction="#LogoutButtonOnClick" prefHeight="34.0" prefWidth="101.0" styleClass="LogoutButton" text="Logout" />
             <Button id="StudentButton" layoutX="7.0" layoutY="102.0" mnemonicParsing="false" onAction="#TimetableButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: WHite;" text="Timetable" />
             <Button layoutX="7.0" layoutY="158.0" mnemonicParsing="false" onAction="#CLassButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: WHite;" text="Class" />
+            <Button id="ProfileButton" layoutX="7.0" layoutY="32.0" mnemonicParsing="false" onAction="#ProfileButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: WHite;" text="Profile" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="173.0" layoutY="121.0" onMouseClicked="#TeacherPanelOnClick" prefHeight="77.0" prefWidth="586.0" style="-fx-background-color: #D3D3D3;">
+      <AnchorPane layoutX="183.0" layoutY="131.0" onMouseClicked="#TeacherPanelOnClick" prefHeight="77.0" prefWidth="586.0" style="-fx-background-color: #D3D3D3;">
          <children>
             <Separator prefHeight="3.0" prefWidth="586.0" />
-            <Button layoutX="147.0" layoutY="29.0" mnemonicParsing="false" onAction="#TimetableButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="Your Timetable" />
+            <Button fx:id="YourTimetable" layoutX="147.0" layoutY="29.0" mnemonicParsing="false" onAction="#TimetableButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="Your Timetable" />
             <Button layoutX="338.0" layoutY="29.0" mnemonicParsing="false" onAction="#ClassButtonOnClick" prefHeight="34.0" prefWidth="115.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="Create Class" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="173.0" layoutY="101.0" onMouseClicked="#TeacherPanelOnClick" prefHeight="30.0" prefWidth="586.0" style="-fx-background-color: grey;">
+      <AnchorPane layoutX="183.0" layoutY="111.0" onMouseClicked="#TeacherPanelOnClick" prefHeight="30.0" prefWidth="586.0" style="-fx-background-color: grey;">
          <children>
             <Label layoutX="21.0" layoutY="4.0" style="-fx-text-fill: White;" text="Teacher" textFill="#f5f5f5">
                <font>

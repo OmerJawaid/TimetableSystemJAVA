@@ -36,6 +36,15 @@ public class TimetableGenerator {
     @FXML
     AnchorPane SectionTimetablePane;
     @FXML
+    AnchorPane SectionNamePane;
+    @FXML
+    AnchorPane SectionTimetableShowPane;
+    @FXML
+    HBox SectiontimetableHBox;
+    @FXML
+    TextField SectionNameTextField;
+
+    @FXML
     AnchorPane TeacherTimetablePane;
     @FXML
     AnchorPane GeneratorPane;
@@ -67,6 +76,10 @@ public class TimetableGenerator {
         SectionTimetablePane.setVisible(true);
         GeneratorPane.setVisible(false);
         TeacherTimetablePane.setVisible(false);
+        TeacherNamePane.setVisible(false);
+        TeacherTimetableShowPane.setVisible(false);
+        SectionNamePane.setVisible(true);
+        SectionTimetableShowPane.setVisible(false);
     }
 
     public void TeacherButtonOnClick(ActionEvent actionEvent) {
@@ -75,12 +88,16 @@ public class TimetableGenerator {
         TeacherTimetablePane.setVisible(true);
         TeacherNamePane.setVisible(true);
         TeacherTimetableShowPane.setVisible(false);
+        SectionNamePane.setVisible(false);
+        SectionTimetableShowPane.setVisible(false);
     }
 
     public void GeneratorButtonPaneOnClick(ActionEvent actionEvent) {
         SectionTimetablePane.setVisible(false);
         GeneratorPane.setVisible(true);
         TeacherTimetablePane.setVisible(false);
+        SectionNamePane.setVisible(false);
+        SectionTimetableShowPane.setVisible(false);
         DAL();
     }
 
@@ -162,7 +179,62 @@ public class TimetableGenerator {
         }
     }
 
+    public void SectionTimetableShowButtonPaneOnClick(ActionEvent actionEvent) {
+        SectionNamePane.setVisible(false);
+        SectionTimetableShowPane.setVisible(true);
+        SectiontimetableHBox.setVisible(true);
 
+        String sectionName = SectionNameTextField.getText();
+        SectiontimetableHBox.getChildren().clear();
+        List<TimetableEntries> timetableEntries = new ArrayList<>();
+        String sql = "SELECT TeacherName, SectionName, CourseName, RoomId, TimeSlot FROM Timetable WHERE SectionName = ?";
+
+        try (Connection connection = con.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, sectionName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String teacherName = resultSet.getString("TeacherName");
+                String courseName = resultSet.getString("CourseName");
+                String roomId = resultSet.getString("RoomId");
+                String timeSlot = resultSet.getString("TimeSlot");
+                TimetableEntries entry = new TimetableEntries(sectionName,teacherName, courseName, roomId, timeSlot);
+                timetableEntries.add(entry);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (!timetableEntries.isEmpty()) {
+            // Create columns for Teacher, Course, Room, and Time
+            VBox teacherColumn = new VBox(5);
+            VBox courseColumn = new VBox(5);
+            VBox roomColumn = new VBox(5);
+            VBox timeColumn = new VBox(5);
+
+            // Add headers
+            teacherColumn.getChildren().add(new Label("Teacher"));
+            courseColumn.getChildren().add(new Label("Course"));
+            roomColumn.getChildren().add(new Label("Room"));
+            timeColumn.getChildren().add(new Label("Time"));
+
+            // Add timetable entries
+            for (TimetableEntries entry : timetableEntries) {
+                teacherColumn.getChildren().add(new Label(entry.getTeacherName()));
+                courseColumn.getChildren().add(new Label(entry.getCourseName()));
+                roomColumn.getChildren().add(new Label(entry.getRoomId()));
+                timeColumn.getChildren().add(new Label(entry.getTime()));
+            }
+
+            // Add columns to the HBox
+            SectiontimetableHBox.getChildren().addAll(teacherColumn, courseColumn, roomColumn, timeColumn);
+        } else {
+            System.out.println("No timetable found for " + sectionName);
+        }
+    }
 
 
     public void DAL() {
@@ -328,6 +400,7 @@ public class TimetableGenerator {
             System.out.println("No timetable found for " + sectionName);
         }
     }
+
 
 
 }
