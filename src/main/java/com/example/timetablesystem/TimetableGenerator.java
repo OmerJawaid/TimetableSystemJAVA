@@ -53,6 +53,8 @@ public class TimetableGenerator {
     @FXML
     AnchorPane TeacherTimetableShowPane;
     @FXML
+    HBox timetablehbox;
+    @FXML
     HBox timetableHBox;
     @FXML
     TextField TeacherNameTextField;
@@ -313,9 +315,42 @@ public class TimetableGenerator {
         String specificSectionName = "BSE 2-A"; // Replace with the name of the specific section
         displaySectionTimetable(specificSectionName);
     }
+    private void updateTimetableUI(List<TimetableEntries> timetableEntries) {
+        if (!timetableEntries.isEmpty()) {
+            // Create columns for Section, Course, Room, and Time
+            VBox sectionColumn = new VBox(5);
+            VBox teacherColumn = new VBox(5);
+            VBox courseColumn = new VBox(5);
+            VBox roomColumn = new VBox(5);
+            VBox timeColumn = new VBox(5);
 
+            // Add headers
+            sectionColumn.getChildren().add(new Label("Section"));
+            teacherColumn.getChildren().add(new Label("Teacher"));
+            courseColumn.getChildren().add(new Label("Course"));
+            roomColumn.getChildren().add(new Label("Room"));
+            timeColumn.getChildren().add(new Label("Time"));
+
+            // Add timetable entries
+            for (TimetableEntries entry : timetableEntries) {
+                sectionColumn.getChildren().add(new Label(entry.getSectionName()));
+                teacherColumn.getChildren().add(new Label(entry.getTeacherName()));
+                courseColumn.getChildren().add(new Label(entry.getCourseName()));
+                roomColumn.getChildren().add(new Label(entry.getRoomId()));
+                timeColumn.getChildren().add(new Label(entry.getTime()));
+            }
+
+            // Clear previous columns from the HBox
+            timetablehbox.getChildren().clear();
+
+            // Add columns to the HBox
+            timetablehbox.getChildren().addAll(sectionColumn, teacherColumn, courseColumn, roomColumn, timeColumn);
+        } else {
+            System.out.println("No timetable found.");
+        }
+    }
     //Timetable Generation
-    private static void scheduleTimetable(Random random) {
+    private void scheduleTimetable(Random random) {
         Map<String, Set<String>> teacherSchedule = new HashMap<>();
         Map<String, Set<String>> roomSchedule = new HashMap<>();
         Map<String, Set<String>> courseSchedule = new HashMap<>();
@@ -345,7 +380,9 @@ public class TimetableGenerator {
                 }
             }
         }
+        updateTimetableUI(timetableEntries);
     }
+
 
     private static List<String> getAllAvailableTimes(List<Room> rooms) {
         Set<String> allTimes = new HashSet<>();
