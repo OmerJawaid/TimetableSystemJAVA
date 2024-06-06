@@ -9,15 +9,34 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class StudentDashboardController {
     public void AttendanceButtonOnClick(ActionEvent actionEvent) {
     }
 
-    public void TimetableButtonOnClick(ActionEvent actionEvent) {
+    public void TimetableButtonOnClick(ActionEvent actionEvent) throws IOException, SQLException {
+        FXMLLoader loader =new FXMLLoader(getClass().getResource("/com/example/timetablesystem/StudentTimetable.fxml"));
+        Parent LoginParent =loader.load();
+        StudentTimetableController LoginController =loader.getController();
+        LoginController.studentimetablegeneration();
+
+        Scene LoginScene =new Scene(LoginParent);
+        Stage window= (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(LoginScene);
+        window.show();
     }
 
-    public void YourTimetableButtonOnClick(ActionEvent actionEvent) {
+    public void YourTimetableButtonOnClick(ActionEvent actionEvent) throws IOException, SQLException {
+        FXMLLoader loader =new FXMLLoader(getClass().getResource("/com/example/timetablesystem/StudentTimetable.fxml"));
+        Parent LoginParent =loader.load();
+        StudentTimetableController LoginController =loader.getController();
+        LoginController.studentimetablegeneration();
+
+        Scene LoginScene =new Scene(LoginParent);
+        Stage window= (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(LoginScene);
+        window.show();
     }
 
     public void TeacherTimetableButtonOnClick(ActionEvent actionEvent) {

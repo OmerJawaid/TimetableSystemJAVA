@@ -31,7 +31,6 @@
          <children>
             <Separator prefHeight="3.0" prefWidth="586.0" />
             <Button fx:id="YourTimetableButton" layoutX="147.0" layoutY="29.0" mnemonicParsing="false" onAction="#YourTimetableButtonOnClick" prefHeight="34.0" prefWidth="101.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="Your Timetable" />
-            <Button fx:id="TeacherTimetableButton" layoutX="338.0" layoutY="29.0" mnemonicParsing="false" onAction="#TeacherTimetableButtonOnClick" prefHeight="34.0" prefWidth="115.0" style="-fx-background-color: #3b3b3b; -fx-text-fill: White;" text="Teacher Timetable" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="163.0" layoutY="91.0" onMouseClicked="#TimetablePaneOnClick" prefHeight="30.0" prefWidth="586.0" style="-fx-background-color: grey;">
